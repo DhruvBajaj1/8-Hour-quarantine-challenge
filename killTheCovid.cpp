@@ -14,22 +14,19 @@ public:
 };
 void addHexagon(string name , vector<pair<int, string> >&border, unordered_map<string, Hexagon*>&m)
 {
-	cout << "hello";
 	Hexagon * tempHexagon = new Hexagon(name);
 	int i;
 	for (i = 0; i < border.size(); i++)
 	{
-		(tempHexagon->neighbors)[border[i].first] = m[border[i].second];
-		if ( (m[border[i].second]->neighbors)[(border[i].first + 3) % 6] == NULL)
-//		{
-//			(m[border[i].second]->neighbors)[(border[i].first + 3) % 6] = tempHexagon;
-			cout << "hello in if";
-//		}
-//		else
-//		{
-//			cout << "An edge can be shared by two Hexagons only. Invalid Input" << endl;
-//		}
-		cout << "hello in loop 2";
+    	(tempHexagon->neighbors)[border[i].first] = m[border[i].second];
+		if( (m[border[i].second]->neighbors)[(border[i].first + 3) % 6] == NULL)
+		{
+     		(m[border[i].second]->neighbors)[(border[i].first + 3) % 6] = tempHexagon;
+		}
+		else
+		{
+			cout << "An edge can be shared by two Hexagons only. Invalid Input" << endl;
+		}
 	}
 	m[name] = tempHexagon;
 }
@@ -51,10 +48,10 @@ void getNeighbors(string name, unordered_map<string, Hexagon*>&m)
 			if (flag == 0)
 			{
 				flag = 1;
-				cout << "[(" << i << ",(" << (requiredHexagon->neighbors[i])->nameOfHexagon << ")";
+				cout << "[(" << i << "," << (requiredHexagon->neighbors[i])->nameOfHexagon << ")";
 			}
 			else
-				cout << ", (" << i << ",(" << (requiredHexagon->neighbors[i])->nameOfHexagon << ")";
+				cout << ", (" << i <<","<< (requiredHexagon->neighbors[i])->nameOfHexagon << ")";
 		}
 	}
 	if (flag == 1)
@@ -91,6 +88,7 @@ int main()
 	temp = 1;
 	while (temp)
 	{
+		cout<<endl;
 		cout << "1. Enter 1 to find the neighbors of the Hexagon" << endl;
 		cout << "2. Enter 2 to add a Hexagon to the cluster" << endl;
 		cout << "3. Enter 3 to delete a Hexagon from the cluster" << endl;
@@ -143,6 +141,7 @@ int main()
 		}
 		default:
 			cout << "Invalid Input" << endl;
+			break;
 		}
 	}
 	return 0;
